@@ -1,0 +1,50 @@
+<h2>Add new Employee</h2>
+<hr>
+<div class="row">
+	<div class="col-md-6">
+		<div class="well well-sm">
+			<form ng-controller="add-new-employee">
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="emloyee.lastName" placeholder="Enter Emploee Last Name"
+					       required>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="emloyee.firstName" placeholder="Enter Emploee First Name"
+					       required>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="emloyee.middleName" placeholder="Enter Emploee Middle Name"
+					       required>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="emloyee.job" placeholder="Enter Position" required>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="emloyee.department" placeholder="Enter Department" required>
+				</div>
+
+
+				<div class="form-group">
+					<label class="control-label"><i class="fa fa-calendar"></i> Datetime picker</label><br>
+					<div class="form-group">
+						<input type="text" size="10" class="form-control" ng-model="emloyee.date" data-autoclose="1"
+						       placeholder="Enter Date" bs-datepicker>
+					</div>
+					<div class="form-group">
+						<input type="text" size="8" class="form-control" ng-model="emloyee.startTime" data-time-format="HH:mm"
+						       data-autoclose="1" data-length="1" data-minute-step="1" data-arrow-behavior="picker"
+						       placeholder="Enter Start Time" required bs-timepicker>
+					</div>
+					<div class="form-group">
+						<input type="text" size="8" class="form-control" ng-model="emloyee.endTime" data-time-format="HH:mm"
+						       data-autoclose="1" data-length="1" data-minute-step="1" data-arrow-behavior="picker"
+						       placeholder="Enter End Time" bs-timepicker>
+
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-success" ng-click="addEmployee()">Add Employee</button>
+			</form>
+		</div>
+	</div>
+</div>

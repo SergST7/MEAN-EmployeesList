@@ -1,0 +1,53 @@
+<div ng-controller="employees-list">
+	<h2>List of Employees
+		<span style="font-size: 16px;">
+		<input type="text" ng-model="searchPeople" placeholder="Search for Employees by Last name"
+		       style="height: 40px; margin: 0px 31px; padding: 0px 15px;width: 300px;">
+	</span>
+	</h2>
+	<hr>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="well well-sm">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+						<tr>
+							<th>Last Name</th>
+							<th>First Name</th>
+							<th>Middle Name</th>
+							<th>Position</th>
+							<th>Department</th>
+							<th>Date</th>
+							<th>Start time</th>
+							<th>End time</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr dir-paginate="item in employeesList | searchFor:searchEmployee | itemsPerPage: pageSize" current-page="currentPage">
+							<td>{{item.lastName}}</td>
+							<td>{{item.firstName}}</td>
+							<td>{{item.middleName}}</td>
+							<td>{{item.job}}</td>
+							<td>{{item.department}}</td>
+							<td>{{item.date | date:'MM/dd/yyyy'}}</td>
+							<td>{{item.startTime | date:'HH:mm'}}</td>
+							<td>{{item.endTime | date:'HH:mm'}}</td>
+							<td><button type="button" class="btn btn-primary"
+							            data-animation="am-fade-and-slide-top"
+							            data-template-url="templates/modal.html"
+							            data-controller="employees-list"
+							            bs-modal="modal"
+							            ng-click="editEmployee($index)">Edit</button></td>
+							<td><button type="button" class="btn btn-danger" ng-click="deleteEmployee($index)">Delete</button></td>
+						</tr>
+					</tbody>
+					</table>
+					<dir-pagination-controls boundary-links="true"  template-url="templates/dirPagination.html"></dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

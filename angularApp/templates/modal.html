@@ -1,0 +1,53 @@
+<div class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" ng-controller="edit-employee">
+		<div class="modal-content">
+			<div class="modal-header" ng-show="true">
+				<button type="button" class="close" ng-click="$hide()">&times;</button>
+				<!--<h4 class="modal-title" ng-bind-html="title"></h4>-->
+			</div>
+			<div class="modal-body" ng-show="true">
+
+				<h4>Edit Employee {{employeeData.lastName}} </h4>
+				<!--<p ng-bind-html="content">123</p>-->
+				<form>
+
+					<!--<div class="form-group">-->
+						<!--<label>Last Name-->
+							<!--<input type="text" class="form-control" ng-model="employeeData.lastName" placeholder="Enter First Name" required>-->
+						<!--</label>-->
+					<!--</div>-->
+
+					<label class="control-label"><i class="fa fa-calendar"></i> Datetime picker</label><br>
+					<div class="form-group">
+						<input type="text" size="10" class="form-control" ng-model="employeeData.date" data-autoclose="1"
+						       placeholder="Enter Date" bs-datepicker>
+					</div>
+
+
+					<div class="form-group">
+						<label class="control-label"><i class="fa fa-clock-o"></i>Start Time</label><br>
+						<div class="form-group">
+							<input type="text" class="form-control" size="8" ng-model="employeeData.startTime"
+							       name="time" bs-timepicker data-time-format="HH:mm"
+							       data-length="1" data-minute-step="1" data-arrow-behavior="picker">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label"><i class="fa fa-clock-o"></i>End Time</label><br>
+						<div class="form-group">
+							<input type="text" class="form-control" size="8" ng-model="employeeData.endTime"
+							       name="time" bs-timepicker data-time-format="HH:mm"
+							       data-length="1" data-minute-step="1" data-arrow-behavior="picker">
+						</div>
+					</div>
+
+				</form>
+				</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" ng-click="cancel(); $hide()">Close</button>
+				<button type="button" class="btn btn-primary" ng-click="updateEmployee(); $hide()">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
