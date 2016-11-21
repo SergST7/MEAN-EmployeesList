@@ -59,7 +59,7 @@ app.controller('employees-list',function($scope,$state,$http,sharedEmployee,$fil
 	$scope.employeesList = {};
 	$scope.pageSize = 5;
 	$scope.currentPage = 1;
-	$http.get($scope.uri + "employees").success(function(response){
+	$http.get("https://sleepy-wave-61782.herokuapp.com/employees").success(function(response){
 		if(response.error === 0){
 			console.log(response);
 			$scope.employeesList = response.Employees;
@@ -102,7 +102,7 @@ app.controller('add-new-employee',function($scope,$http,$state){
 			"startTime":$scope.emloyee.startTime,
 			"endTime":$scope.emloyee.endTime
 		};
-		$http.post($rootScope.uri +  "employees",payload).success(function(res){
+		$http.post("https://sleepy-wave-61782.herokuapp.com/employees",payload).success(function(res){
 			if(res.error == 0){
 				$state.go("home");
 			}else{
@@ -121,7 +121,7 @@ app.controller('edit-employee',function($scope,$http,$state,sharedEmployee){
 			"startTime":$scope.employeeData.startTime,
 			"endTime":$scope.employeeData.endTime
 		};
-		$http.put($rootScope.uri + "employees",payload).success(function(res){
+		$http.put("https://sleepy-wave-61782.herokuapp.com/employees",payload).success(function(res){
 			if(res.error == 0){
 				$state.go($state.current, {}, {reload: true});
 
