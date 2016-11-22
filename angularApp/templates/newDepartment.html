@@ -1,0 +1,23 @@
+<h2>Departments</h2>
+<hr>
+<div class="row">
+	<div class="col-md-6">
+		<div class="well well-sm" ng-controller="departmentsCtr">
+			<ul  class="departments-list">
+				<li ng-repeat="item in departmentList" >{{ item.name }}</li>
+			</ul>
+			<form>
+				<div class="form-group">
+					<label >Add New Departmrnt</label>
+					<input type="text" class="form-control" ng-model="department.name" placeholder="Enter New Department  Name"
+					       required>
+				</div>
+
+				<button type="submit" class="btn btn-success" ng-click="addDepartment()">Add New Department</button>
+				<button type="submit" class="btn btn-cancel" ng-click="cancel()">Cancel</button>
+
+
+			</form>
+		</div>
+	</div>
+</div>

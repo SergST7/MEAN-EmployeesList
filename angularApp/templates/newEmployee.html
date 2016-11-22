@@ -19,10 +19,14 @@
 				<div class="form-group">
 					<input type="text" class="form-control" ng-model="emloyee.job" placeholder="Enter Position" required>
 				</div>
-				<div class="form-group">
-					<input type="text" class="form-control" ng-model="emloyee.department" placeholder="Enter Department" required>
+				<div class="form-group" ng-controller="optionsDepartment">
+					<!--<input type="text" class="form-control" ng-model="emloyee.department" placeholder="Enter Department" required>-->
+					<label >Select Department: </label>
+					<select ng-model="emloyee.department"
+					        ng-options="item.name for item in departments">
+						<option value=""> --- </option>
+					</select>
 				</div>
-
 
 				<div class="form-group">
 					<label class="control-label"><i class="fa fa-calendar"></i> Datetime picker</label><br>
@@ -44,6 +48,8 @@
 				</div>
 
 				<button type="submit" class="btn btn-success" ng-click="addEmployee()">Add Employee</button>
+				<button type="submit" class="btn btn-cancel" ng-click="cancel()">Cancel</button>
+
 			</form>
 		</div>
 	</div>
