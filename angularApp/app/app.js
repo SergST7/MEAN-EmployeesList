@@ -12,6 +12,10 @@ app.config(['$stateProvider','$urlRouterProvider',
 				url: "/addnew",
 				templateUrl: "templates/newEmployee.html"
 			})
+			.state('NewDepartment', {
+				url: "/addnewdepartment",
+				templateUrl: "templates/newDepartment.html"
+			})
 			// .state('EditEmployee', {
 			// 	url: "/editemployee",
 			// 	templateUrl: "templates/editEmployee.html"
@@ -22,7 +26,7 @@ app.config(['$stateProvider','$urlRouterProvider',
 app.run(function($rootScope, $state) {
 	$rootScope.$state = $state;
 	$rootScope.uri = 'https://sleepy-wave-61782.herokuapp.com/';
-	// $rootScope.$uri = 'http://localhost:8080';
+	// $rootScope.uri = 'http://localhost:8080/';
 
 });
 
@@ -89,8 +93,19 @@ app.controller('employees-list',function($scope,$state,$http,sharedEmployee,$fil
 	};
 });
 
+app.controller('optionsDepartment', function ($scope, $http) {
+	$scope.selectedDepartment = null;
+	$scope.departments = [];
+
+	$http.get($scope.uri + "department").success(function(response){
+		$scope.departments = response.Departments;
+		console.log($scope.departments)
+	});
+});
+
 app.controller('add-new-employee',function($scope,$http,$state){
 	$scope.employee = {};
+
 	$scope.addEmployee = function(){
 		var payload = {
 			"lastName":$scope.emloyee.lastName,
@@ -102,7 +117,7 @@ app.controller('add-new-employee',function($scope,$http,$state){
 			"startTime":$scope.emloyee.startTime,
 			"endTime":$scope.emloyee.endTime
 		};
-		$http.post($rootScope.uri +  "employees",payload).success(function(res){
+		$http.post($scope.uri + "employees",payload).success(function(res){
 			if(res.error == 0){
 				$state.go("home");
 			}else{
@@ -110,6 +125,41 @@ app.controller('add-new-employee',function($scope,$http,$state){
 			}
 		});
 	};
+	$scope.cancel = function () {
+		$state.go("home");
+	}
+});
+
+app.controller('departmentsCtr',function($scope,$http,$state){
+	$scope.department = {};
+	$scope.departmentList = {};
+
+	$http.get($scope.uri + "department").success(function(response){
+		if(response.error === 0){
+			$scope.departmentList = response.Departments;
+			console.log($scope.departmentList);
+		}else{
+			$scope.departmentList = [];
+		}
+	});
+
+	$scope.addDepartment = function(){
+		var payload = {
+			"departmentName": $scope.department.name
+		};
+		console.log(payload);
+		$http.post($scope.uri + "department",payload).success(function(res){
+			if(res.error == 0){
+				$state.go("home");
+			}else{
+
+			}
+		});
+	};
+	$scope.cancel = function () {
+		$state.go("home");
+	}
+
 });
 
 app.controller('edit-employee',function($scope,$http,$state,sharedEmployee){
@@ -121,7 +171,7 @@ app.controller('edit-employee',function($scope,$http,$state,sharedEmployee){
 			"startTime":$scope.employeeData.startTime,
 			"endTime":$scope.employeeData.endTime
 		};
-		$http.put($rootScope.uri + "employees",payload).success(function(res){
+		$http.put($scope.uri + "employees",payload).success(function(res){
 			if(res.error == 0){
 				$state.go($state.current, {}, {reload: true});
 
